@@ -6,7 +6,7 @@ BingoTeacher is a tool used by the Ocarina of Time speedrunning community to hel
 
 Bingo Teacher is deployed on GitHub pages at https://qwoodmansee.github.io/bingo-teacher/ - if you'd like to see the tool work, manually search for a goal and select it. Due to the volume of videos per goal, this tool is most easily used on a desktop browser.
 
-## New Acrchitecture Deployed Version [Users looking to contribute to the source data]
+## New Architecture Deployed Version [Users looking to contribute to the source data]
 
 Bingo teacher's user provided content project has just begun. See the production deploy of this repostiory at https://bingot-cms.vercel.app/ for the most recent updates.
 
