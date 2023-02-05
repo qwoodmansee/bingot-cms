@@ -1,28 +1,31 @@
 import React from 'react';
+import Image from 'next/image';
 
 export const BingoTeacherNavBar = () => {
   return (
     <Navbar className='bg-white text-gray-600'>
       <NavbarBrand href='#'>
-        <img
-          src='https://seeklogo.com/images/N/next-js-logo-8FCFF51DD2-seeklogo.com.png'
+        {/* <Image
+          src='/bt-logo.png'
           alt='BingoTeacher'
+          loader={}
+          fill
           className='w-9 h-9'
-        />
+        /> */}
       </NavbarBrand>
       <NavbarToggler />
       <NavbarCollapse>
         <NavbarNav orientation='start'>
           <NavbarItem>
-            <NavbarLink href='#'>Bingo Teacher</NavbarLink>
+            <NavbarLink href='/learn'>Bingo Teacher</NavbarLink>
           </NavbarItem>
         </NavbarNav>
         <NavbarNav orientation='end'>
           <NavbarItem>
-            <NavbarLink href='#'>Development Blog</NavbarLink>
+            <NavbarLink href='/blog'>Development Blog</NavbarLink>
           </NavbarItem>
           <NavbarItem>
-            <NavbarLink href='#'>Login</NavbarLink>
+            <NavbarLink href='/user/login'>Login</NavbarLink>
           </NavbarItem>
         </NavbarNav>
       </NavbarCollapse>
