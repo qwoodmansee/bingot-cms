@@ -2,6 +2,7 @@ import { Inter, Roboto_Mono } from '@next/font/google';
 import { BingoTeacherNavBar } from '../components/bingo-teacher-components/bingoTeacherNavBar';
 import Footer from '../components/footer';
 import PreviewModeAlert from '../components/preview-mode-alert';
+import '../styles/index.css';
 
 const inter = Inter({
   variable: '--font-inter',
