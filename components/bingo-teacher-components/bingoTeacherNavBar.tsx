@@ -14,15 +14,15 @@ export const BingoTeacherNavBar = () => {
       <NavbarCollapse>
         <NavbarNav orientation='start'>
           <NavbarItem>
-            <NavbarLink href='#'>Bingo Teacher</NavbarLink>
+            <NavbarLink href='/learn'>Bingo Teacher</NavbarLink>
           </NavbarItem>
         </NavbarNav>
         <NavbarNav orientation='end'>
           <NavbarItem>
-            <NavbarLink href='#'>Development Blog</NavbarLink>
+            <NavbarLink href='/blog'>Development Blog</NavbarLink>
           </NavbarItem>
           <NavbarItem>
-            <NavbarLink href='#'>Login</NavbarLink>
+            <NavbarLink href='/user/login'>Login</NavbarLink>
           </NavbarItem>
         </NavbarNav>
       </NavbarCollapse>
