@@ -1,32 +1,28 @@
-```jsx
 import React from 'react';
 
-export const NavbarPage = () => {
+export const BingoTeacherNavBar = () => {
   return (
-    <Navbar className="bg-white text-gray-600">
-      <NavbarBrand href="#">
+    <Navbar className='bg-white text-gray-600'>
+      <NavbarBrand href='#'>
         <img
-          src="https://seeklogo.com/images/N/next-js-logo-8FCFF51DD2-seeklogo.com.png"
-          alt="Next.js"
-          className="w-9 h-9"
+          src='https://seeklogo.com/images/N/next-js-logo-8FCFF51DD2-seeklogo.com.png'
+          alt='BingoTeacher'
+          className='w-9 h-9'
         />
       </NavbarBrand>
       <NavbarToggler />
       <NavbarCollapse>
-        <NavbarNav orientation="start">
+        <NavbarNav orientation='start'>
           <NavbarItem>
-            <NavbarLink href="#">Documentation</NavbarLink>
+            <NavbarLink href='#'>Bingo Teacher</NavbarLink>
           </NavbarItem>
         </NavbarNav>
-        <NavbarNav orientation="end">
+        <NavbarNav orientation='end'>
           <NavbarItem>
-            <NavbarLink href="#">Deployment</NavbarLink>
+            <NavbarLink href='#'>Development Blog</NavbarLink>
           </NavbarItem>
           <NavbarItem>
-            <NavbarLink href="#">Basic Features</NavbarLink>
-          </NavbarItem>
-          <NavbarItem>
-            <NavbarLink href="#">Advanced Features</NavbarLink>
+            <NavbarLink href='#'>Login</NavbarLink>
           </NavbarItem>
         </NavbarNav>
       </NavbarCollapse>
@@ -53,7 +49,12 @@ const style = {
   },
 };
 
-const Context = React.createContext({});
+interface NavbarContextType {
+  open: boolean;
+  toggle: () => void;
+}
+
+const NavbarContext = React.createContext<NavbarContextType | null>(null);
 
 const Navbar = ({ children, className }) => {
   const [open, setOpen] = React.useState(false);
@@ -78,15 +79,15 @@ const Navbar = ({ children, className }) => {
   }, [open, navbarRef]);
 
   return (
-    <Context.Provider value={{ open, toggle }}>
+    <NavbarContext.Provider value={{ open, toggle }}>
       <nav ref={navbarRef} className={`${className} ${style.navbar}`}>
         {children}
       </nav>
-    </Context.Provider>
+    </NavbarContext.Provider>
   );
 };
 
-const useToggle = () => React.useContext(Context);
+const useToggle = () => React.useContext(NavbarContext);
 
 /* You can wrap the a tag with Link and pass href to Link if you are using either Create-React-App, Next.js or Gatsby */
 const NavbarBrand = ({ children, href }) => (
@@ -99,9 +100,9 @@ const NavbarToggler = () => {
   const { toggle } = useToggle();
   return (
     <button
-      type="button"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
+      type='button'
+      aria-expanded='false'
+      aria-label='Toggle navigation'
       className={style.toggler}
       onClick={toggle}
     >
@@ -130,9 +131,13 @@ const NavbarNav = ({ children, orientation }) => (
 const NavbarItem = ({ children }) => <li className={style.item}>{children}</li>;
 
 /* You can wrap the a tag with Link and pass href to Link if you are using either Create-React-App, Next.js or Gatsby */
-const NavbarLink = ({ children, href, active, activeClass }) => (
+const NavbarLink = ({
+  children,
+  href,
+  active = undefined,
+  activeClass = undefined,
+}) => (
   <a href={href} className={active ? activeClass : ''}>
     {children}
   </a>
 );
-```
