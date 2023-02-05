@@ -1,23 +1,11 @@
-import { useRouter } from 'next/router';
 import Head from 'next/head';
-import ErrorPage from 'next/error';
 import Container from '../../components/container';
-import PostBody from '../../components/post-body';
 import MoreStories from '../../components/more-stories';
-import Header from '../../components/header';
-import PostHeader from '../../components/post-header';
-import SectionSeparator from '../../components/section-separator';
-import Layout from '../../components/layout';
-import {
-  getAllPostsForHome,
-  getAllPostsWithSlug,
-  getPostAndMorePosts,
-} from '../../lib/api';
-import PostTitle from '../../components/post-title';
+import { getAllPostsForHome } from '../../lib/api';
 import HeroPost from '../../components/hero-post';
 import Intro from '../../components/intro';
 
-export default function BlogHome({ allPosts, preview }) {
+export default function BlogHome({ allPosts }) {
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
 
