@@ -8,6 +8,7 @@ const ContentfulImage = (props) => {
   return (
     <Image
       loader={contentfulLoader}
+      alt='contentful-image'
       {...props}
       style={{
         maxWidth: '100%',

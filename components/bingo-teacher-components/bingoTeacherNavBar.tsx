@@ -1,14 +1,17 @@
 import React from 'react';
+import Image from 'next/image';
 
 export const BingoTeacherNavBar = () => {
   return (
     <Navbar className='bg-white text-gray-600'>
       <NavbarBrand href='#'>
-        <img
-          src='https://seeklogo.com/images/N/next-js-logo-8FCFF51DD2-seeklogo.com.png'
+        {/* <Image
+          src='/bt-logo.png'
           alt='BingoTeacher'
+          loader={}
+          fill
           className='w-9 h-9'
-        />
+        /> */}
       </NavbarBrand>
       <NavbarToggler />
       <NavbarCollapse>
