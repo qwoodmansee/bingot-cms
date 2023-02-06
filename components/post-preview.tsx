@@ -1,7 +1,14 @@
 import Link from 'next/link';
-import Avatar from '../components/avatar';
-import DateComponent from '../components/date';
+import Avatar from './avatar';
+import DateComponent from './date';
 import CoverImage from './cover-image';
+import { IPostFields } from '../contenful/@types/generated/contentful';
+
+type PostPreviewFields = Pick<
+  IPostFields,
+  'title' | 'coverImage' | 'date' | 'excerpt' | 'author' | 'slug'
+> &
+  Partial<IPostFields>;
 
 export default function PostPreview({
   title,
@@ -10,11 +17,11 @@ export default function PostPreview({
   excerpt,
   author,
   slug,
-}) {
+}: PostPreviewFields) {
   return (
     <div>
       <div className='mb-5'>
-        <CoverImage title={title} slug={slug} url={coverImage.url} />
+        <CoverImage title={title} slug={slug} coverImage={coverImage} />
       </div>
       <h3 className='text-3xl mb-3 leading-snug'>
         <Link href={`/blog/posts/${slug}`} className='hover:underline'>
@@ -25,7 +32,12 @@ export default function PostPreview({
         <DateComponent dateString={date} />
       </div>
       <p className='text-lg leading-relaxed mb-4'>{excerpt}</p>
-      {author && <Avatar name={author.name} picture={author.picture} />}
+      {author && (
+        <Avatar
+          name={author.fields.name}
+          pictureUrl={author.fields.picture.fields.file.url}
+        />
+      )}
     </div>
   );
 }

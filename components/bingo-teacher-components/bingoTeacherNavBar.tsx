@@ -1,18 +1,11 @@
+'use client';
+
 import React from 'react';
-import Image from 'next/image';
 
 export const BingoTeacherNavBar = () => {
   return (
     <Navbar className='bg-white text-gray-600'>
-      <NavbarBrand href='#'>
-        {/* <Image
-          src='/bt-logo.png'
-          alt='BingoTeacher'
-          loader={}
-          fill
-          className='w-9 h-9'
-        /> */}
-      </NavbarBrand>
+      <NavbarBrand href='#'> </NavbarBrand>
       <NavbarToggler />
       <NavbarCollapse>
         <NavbarNav orientation='start'>

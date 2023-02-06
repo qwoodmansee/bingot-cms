@@ -1,4 +1,4 @@
-import { PreviewModeAlert } from '../components/preview-mode-alert';
+import PreviewModeAlert from '../components/preview-mode-alert';
 import Footer from '../components/footer';
 import { BingoTeacherNavBar } from './bingo-teacher-components/bingoTeacherNavBar';
 
