@@ -1,7 +1,7 @@
-import { createClient, EntryCollection } from 'contentful';
+import { createClient, EntryCollection, Entry } from 'contentful';
 import * as G from './@types/generated/contentful';
 
-type ContentType = G.IPost | G.IAuthor;
+type ContentType = G.IPost | G.IAuthor | G.IBingoGoal;
 
 type ContentEntry<ID extends G.CONTENT_TYPE> = Pick<ContentType, 'fields'> & {
   sys: {
@@ -36,4 +36,26 @@ export const getEntries = async <
   return contentfulClient.getEntries({
     content_type: contentTypeID,
   });
+};
+
+export const getEntry = async <
+  CTID extends ContentTypeID,
+  CE extends ContentEntryByID<CTID>
+>(
+  contentEntryId: string
+): Promise<Entry<CE['fields']>> => {
+  return contentfulClient.getEntry(contentEntryId);
+};
+
+export const getPostFromSlug = async (
+  slug: string
+): Promise<ContentEntryByID<'post'>['fields']> => {
+  const postAsArray = await contentfulClient.getEntries<
+    ContentEntryByID<'post'>['fields']
+  >({
+    'fields.slug': slug,
+    content_type: 'post',
+  });
+
+  return postAsArray.items[0].fields;
 };

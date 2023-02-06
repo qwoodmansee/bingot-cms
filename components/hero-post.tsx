@@ -36,7 +36,9 @@ export default function HeroPost({
         </div>
         <div>
           <p className='text-lg leading-relaxed mb-4'>{excerpt}</p>
-          {author && <Avatar author={author} />}
+          {author && (
+            <Avatar name={author.fields.name} picture={author.fields.picture} />
+          )}
         </div>
       </div>
     </section>

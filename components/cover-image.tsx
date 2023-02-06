@@ -1,5 +1,4 @@
 import ContentfulImage from './contentful-image';
-import Link from 'next/link';
 import cn from 'classnames';
 import { IPostFields } from '../contenful/@types/generated/contentful';
 
@@ -25,17 +24,16 @@ export default function CoverImage(post: CoverImageFields) {
 
   return (
     <div className='sm:mx-0'>
-      {slug ? (
-        <Link
-          href={`/blog/posts/${slug}`}
-          aria-label={postTitle}
-          legacyBehavior
-        >
-          {image}
-        </Link>
-      ) : (
-        image
-      )}
+      {slug
+        ? // <Link
+          //   href={`/blog/posts/${slug}`}
+          //   aria-label={postTitle}
+          //   legacyBehavior
+          // >
+          //   {image}
+          // </Link>
+          image
+        : image}
     </div>
   );
 }

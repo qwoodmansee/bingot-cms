@@ -9,7 +9,7 @@ export default function Avatar(author: IAuthorFields) {
           src={author.picture?.fields.file.url}
           fill
           className='rounded-full'
-          alt={name}
+          alt={author.name}
         />
       </div>
       <div className='text-xl font-bold'>{author.name}</div>
