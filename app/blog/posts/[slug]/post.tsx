@@ -5,19 +5,15 @@ import MoreStories from '../../../../components/more-stories';
 import PostBody from '../../../../components/post-body';
 import PostHeader from '../../../../components/post-header';
 import SectionSeparator from '../../../../components/section-separator';
-import { IPostFields } from '../../../../contenful/@types/generated/contentful';
+import { Post } from '../../../../domain-import-only/Post';
 
-type SubsetPostProps = Pick<
-  IPostFields,
-  'coverImage' | 'title' | 'slug' | 'date' | 'author'
-> &
-  Partial<IPostFields>;
-
-interface PostProps {
-  post: SubsetPostProps;
-  morePosts: Array<unknown>;
-}
-export default function Post({ post, morePosts }: PostProps) {
+export default function Post({
+  post,
+  morePosts,
+}: {
+  post: Post;
+  morePosts: Array<Post>;
+}) {
   return (
     <Container>
       <>

@@ -1,4 +1,4 @@
-import { getEntries } from '../../contenful/contentful-content-service';
+import { getEntries } from '../../data-access-layer/contentful/contentful-content-service';
 import BlogHomePage from './blog-home-page';
 
 async function getAllPosts({ preview = false }) {

@@ -2,13 +2,13 @@ import Link from 'next/link';
 import Avatar from './avatar';
 import DateComponent from './date';
 import CoverImage from './cover-image';
-import { IPostFields } from '../contenful/@types/generated/contentful';
+import { Post } from '../domain-import-only/Post';
 
 type HeroPostFields = Pick<
-  IPostFields,
+  Post,
   'title' | 'coverImage' | 'date' | 'excerpt' | 'author' | 'slug'
 > &
-  Partial<IPostFields>;
+  Partial<Post>;
 
 export default function HeroPost({
   title,
@@ -21,7 +21,7 @@ export default function HeroPost({
   return (
     <section>
       <div className='mb-8 md:mb-16'>
-        <CoverImage title={title} slug={slug} coverImage={coverImage} />
+        <CoverImage slug={slug} coverImage={coverImage} />
       </div>
       <div className='md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 mb-20 md:mb-28'>
         <div>
@@ -36,9 +36,7 @@ export default function HeroPost({
         </div>
         <div>
           <p className='text-lg leading-relaxed mb-4'>{excerpt}</p>
-          {author && (
-            <Avatar name={author.fields.name} picture={author.fields.picture} />
-          )}
+          {author && <Avatar author={author} />}
         </div>
       </div>
     </section>

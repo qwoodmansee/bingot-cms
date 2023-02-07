@@ -1,7 +1,7 @@
 import {
   getEntries,
   getPostFromSlug,
-} from '../../../../contenful/contentful-content-service';
+} from '../../../../data-access-layer/contentful/contentful-content-service';
 import PostPage from './post';
 
 export async function generateStaticParams() {
