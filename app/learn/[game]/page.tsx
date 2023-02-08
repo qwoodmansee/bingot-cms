@@ -1,5 +1,3 @@
-import { getEntries } from '../../../data-access-layer/contentful/contentful-content-service';
-
 export async function generateStaticParams() {
   return [{ game: 'oot' }];
 }

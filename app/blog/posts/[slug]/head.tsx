@@ -1,7 +1,7 @@
-import { g } from '../../../../data-access-layer/contentful/contentful-content-service';
+import { getPost } from '../../../../data-access-layer/repositories/contentful-post-repository';
 
 export default async function Head({ params }) {
-  const post = await getPostFromSlug(params.slug);
+  const post = await getPost(params.slug);
 
   return (
     <>

@@ -7,7 +7,7 @@ import PostHeader from '../../../../components/post-header';
 import SectionSeparator from '../../../../components/section-separator';
 import { Post } from '../../../../domain-import-only/Post';
 
-export default function Post({
+export default function PostScreen({
   post,
   morePosts,
 }: {

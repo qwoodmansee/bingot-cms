@@ -1,7 +1,7 @@
 import { Post } from '../domain-import-only/Post';
 import PostPreview from './post-preview';
 
-export default function MoreStories({ posts }: { posts: Array<Post> }) {
+export default function MoreStories({ posts }: { posts: Post[] }) {
   return (
     <section>
       <h2 className='mb-8 text-6xl md:text-7xl font-bold tracking-tighter leading-tight'>

@@ -23,7 +23,6 @@ export default function YoutubeDisplayer({
 
       // also have to remove the 's' after the number of seconds in the v query param syntax.
       let startTimeAddition = '';
-      console.log(urlParams.has('start'));
       if (urlParams.has('start')) {
         const timeWithoutS = urlParams
           .get('start')

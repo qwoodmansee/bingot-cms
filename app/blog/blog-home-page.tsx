@@ -5,9 +5,10 @@ import Container from '../../components/container';
 import MoreStories from '../../components/more-stories';
 import HeroPost from '../../components/hero-post';
 import Intro from '../../components/intro';
+import { Post } from '../../domain-import-only/Post';
 
-export default function BlogHomePage({ allPosts }) {
-  const heroPost = allPosts[0];
+export default function BlogHomePage({ allPosts }: { allPosts: Post[] }) {
+  const heroPost = allPosts[0] || null;
   const morePosts = allPosts.slice(1);
 
   return (
@@ -19,12 +20,12 @@ export default function BlogHomePage({ allPosts }) {
         <Intro />
         {heroPost && (
           <HeroPost
-            title={heroPost.fields.title}
-            coverImage={heroPost.fields.coverImage}
-            date={heroPost.fields.date}
-            author={heroPost.fields.author}
-            slug={heroPost.fields.slug}
-            excerpt={heroPost.fields.excerpt}
+            title={heroPost.title}
+            coverImage={heroPost.coverImage}
+            date={heroPost.date}
+            author={heroPost.author}
+            slug={heroPost.slug}
+            excerpt={heroPost.excerpt}
           />
         )}
         {morePosts.length > 0 && <MoreStories posts={morePosts} />}

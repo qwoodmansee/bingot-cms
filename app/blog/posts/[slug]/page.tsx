@@ -1,19 +1,19 @@
 import {
-  getEntries,
-  getPostFromSlug,
-} from '../../../../data-access-layer/contentful/contentful-content-service';
+  getAllPosts,
+  getPost,
+} from '../../../../data-access-layer/repositories/contentful-post-repository';
 import PostPage from './post';
 
 export async function generateStaticParams() {
-  const allPosts = await getEntries('post');
+  const allPosts = await getAllPosts();
 
-  return allPosts.items.map((post) => ({
-    slug: post.fields.slug,
+  return allPosts.map((post) => ({
+    slug: encodeURI(post.slug),
   }));
 }
 
 export default async function Page({ params: { slug } }) {
-  const post = await getPostFromSlug(slug);
+  const post = await getPost(slug);
   return <PostPage post={post} morePosts={[]} />;
 }
 

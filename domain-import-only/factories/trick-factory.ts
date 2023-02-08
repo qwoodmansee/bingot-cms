@@ -3,7 +3,7 @@ import {
   getTrick as GetContentfulTrick,
 } from '../../data-access-layer/repositories/contentful-trick-repository';
 
-export const getTrick = ({
+export const getTrick = async ({
   name,
   for_cms = 'Contentful',
 }: {
@@ -11,19 +11,19 @@ export const getTrick = ({
   for_cms?: string;
 }) => {
   if (for_cms === 'Contentful') {
-    return GetContentfulTrick(name);
+    return await GetContentfulTrick(name);
   } else {
     throw new Error(`CMS ${for_cms} not implemented`);
   }
 };
 
-export const getAllTricks = ({
+export const getAllTricks = async ({
   for_cms = 'Contentful',
 }: {
   for_cms?: string;
 }) => {
   if (for_cms === 'Contentful') {
-    return GetAllContentfulTricks();
+    return await GetAllContentfulTricks();
   } else {
     throw new Error(`CMS ${for_cms} not implemented`);
   }

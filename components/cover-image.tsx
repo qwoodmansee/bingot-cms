@@ -1,12 +1,42 @@
+import Image from 'next/image';
+import cn from 'classnames';
+
+const contentfulLoader = ({ src, width, quality }) => {
+  return `${src}?w=${width}&q=${quality || 75}`;
+};
+
+const ContentfulImage = (props) => {
+  return (
+    <Image
+      loader={contentfulLoader}
+      alt='contentful-image'
+      {...props}
+      style={{
+        maxWidth: '100%',
+      }}
+    />
+  );
+};
+
 export default function CoverImage({
   coverImage,
   slug,
 }: {
-  coverImage: ReactNode;
+  coverImage: string;
   slug: string;
 }) {
   slug; // utilize this later
-  return <div className='sm:mx-0'>{coverImage}</div>;
+  return (
+    <div className='sm:mx-0'>
+      <ContentfulImage
+        width={2000}
+        height={1000}
+        src={coverImage}
+        className={cn('shadow-small')}
+        alt={'cover image'}
+      />
+    </div>
+  );
 }
 
 // import ContentfulImage from './contentful-image';

@@ -1,6 +1,6 @@
 import * as G from './@types/generated/contentful';
 
-type ContentType = G.IPost | G.IAuthor | G.IBingoGoal | G.ITrick;
+type ContentType = G.IPost | G.IAuthor | G.IBingoGoal | G.ITrick | G.ITutorial;
 
 type ContentEntry<ID extends G.CONTENT_TYPE> = Pick<ContentType, 'fields'> & {
   sys: {

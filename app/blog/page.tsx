@@ -1,17 +1,7 @@
-import { getEntries } from '../../data-access-layer/contentful/contentful-content-service';
+import { getAllPosts } from '../../data-access-layer/repositories/contentful-post-repository';
 import BlogHomePage from './blog-home-page';
 
-async function getAllPosts({ preview = false }) {
-  const posts = await getEntries('post');
-  if (posts.errors) {
-    console.error('No posts found');
-    return [];
-  }
-
-  return posts.items;
-}
-
 export default async function Page() {
-  const posts = await getAllPosts({});
+  const posts = await getAllPosts();
   return <BlogHomePage allPosts={posts} />;
 }
