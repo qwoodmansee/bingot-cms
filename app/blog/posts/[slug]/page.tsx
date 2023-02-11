@@ -1,7 +1,7 @@
 import {
   getAllPosts,
   getPost,
-} from '../../../../data-access-layer/repositories/contentful-post-repository';
+} from '../../../../data-access-layer/contentful/repositories/contentful-post-repository';
 import PostPage from './post';
 
 export async function generateStaticParams() {

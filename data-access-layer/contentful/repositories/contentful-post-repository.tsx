@@ -1,10 +1,10 @@
-import { Post } from '../../domain-import-only/Post';
-import { Author } from '../../domain-import-only/Author';
-import { contentfulClient } from '../contentful/contentful-client';
-import { ContentEntryByID } from '../contentful/contentful-types';
-import { getEntries } from '../contentful/contentful-content-service';
+import { Post } from '../../../domain-import-only/Post';
+import { Author } from '../../../domain-import-only/Author';
+import { contentfulClient } from '../contentful-client';
+import { ContentEntryByID } from '../contentful-types';
+import { getEntries } from '../contentful-content-service';
 import { Entry } from 'contentful';
-import { IPostFields } from '../contentful/@types/generated/contentful';
+import { IPostFields } from '../@types/generated/contentful';
 
 export const getPost = async (slug: string): Promise<Post | null> => {
   const postAsArray = await contentfulClient.getEntries<

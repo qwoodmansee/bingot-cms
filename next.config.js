@@ -5,6 +5,7 @@ module.exports = {
     fontLoaders: [
       { loader: '@next/font/google', options: { subsets: ['latin'] } },
     ],
+    urlImports: ['https://themer.sanity.build/'],
   },
   images: {
     loader: 'custom',

@@ -2,7 +2,7 @@ import YoutubeDisplayer from '../../../../components/bingo-teacher-components/yo
 import {
   getAllTricks,
   getTrick,
-} from '../../../../data-access-layer/repositories/contentful-trick-repository';
+} from '../../../../data-access-layer/factories/contentful-trick-provider';
 
 export async function generateStaticParams() {
   const allTricks = await getAllTricks();

@@ -1,4 +1,4 @@
-import { getAllPosts } from '../../data-access-layer/repositories/contentful-post-repository';
+import { getAllPosts } from '../../data-access-layer/contentful/repositories/contentful-post-repository';
 import BlogHomePage from './blog-home-page';
 
 export default async function Page() {

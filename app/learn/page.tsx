@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getAllTricks } from '../../data-access-layer/repositories/contentful-trick-repository';
+import { getAllTricks } from '../../data-access-layer/factories/contentful-trick-provider';
 
 export default async function Page({ params: { game } }) {
   const tricks = await getAllTricks();

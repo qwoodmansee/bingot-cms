@@ -1,4 +1,4 @@
-import { getPost } from '../../../../data-access-layer/repositories/contentful-post-repository';
+import { getPost } from '../../../../data-access-layer/contentful/repositories/contentful-post-repository';
 
 export default async function Head({ params }) {
   const post = await getPost(params.slug);

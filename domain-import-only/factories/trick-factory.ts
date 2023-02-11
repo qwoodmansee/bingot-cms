@@ -1,7 +1,7 @@
 import {
   getAllTricks as GetAllContentfulTricks,
   getTrick as GetContentfulTrick,
-} from '../../data-access-layer/repositories/contentful-trick-repository';
+} from '../../data-access-layer/factories/contentful-trick-provider';
 
 export const getTrick = async ({
   name,
