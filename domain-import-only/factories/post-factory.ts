@@ -1,9 +1,9 @@
 import {
-  getAllTricks as GetAllContentfulTricks,
-  getTrick as GetContentfulTrick,
-} from '../../data-access-layer/contentful/repositories/contentful-trick-repository';
+  getAllPosts as GetAllContentfulPosts,
+  getPost as GetContentfulPost,
+} from '../../data-access-layer/contentful/repositories/contentful-post-repository';
 
-export const getTrick = async ({
+export const getPost = async ({
   name,
   for_cms = 'Contentful',
 }: {
@@ -11,19 +11,19 @@ export const getTrick = async ({
   for_cms?: string;
 }) => {
   if (for_cms === 'Contentful') {
-    return await GetContentfulTrick(name);
+    return await GetContentfulPost(name);
   } else {
     throw new Error(`CMS ${for_cms} not implemented`);
   }
 };
 
-export const getAllTricks = async ({
+export const getAllPosts = async ({
   for_cms = 'Contentful',
 }: {
   for_cms?: string;
 }) => {
   if (for_cms === 'Contentful') {
-    return await GetAllContentfulTricks();
+    return await GetAllContentfulPosts();
   } else {
     throw new Error(`CMS ${for_cms} not implemented`);
   }

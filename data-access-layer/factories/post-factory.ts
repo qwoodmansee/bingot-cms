@@ -22,10 +22,7 @@ export const getPost = async (
   }
 };
 
-export const getAllPosts = async (
-  slug: string,
-  cms: 'Contentful' | 'Sanity'
-) => {
+export const getAllPosts = async (cms: string) => {
   if (cms === 'Contentful') {
     return await ContentfulGetAllPosts();
   } else if (cms === 'Sanity') {
