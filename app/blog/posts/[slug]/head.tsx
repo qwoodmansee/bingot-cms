@@ -1,7 +1,9 @@
-import { getPost } from '../../../../data-access-layer/contentful/repositories/contentful-post-repository';
+import { getPost } from '../../../../data-access-layer/factories/post-factory';
+
+const cms = process.env.CMS;
 
 export default async function Head({ params }) {
-  const post = await getPost(params.slug);
+  const post = await getPost(params.slug, cms);
 
   return (
     <>
