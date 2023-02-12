@@ -2,10 +2,12 @@ import YoutubeDisplayer from '../../../../components/bingo-teacher-components/yo
 import {
   getAllTricks,
   getTrick,
-} from '../../../../data-access-layer/factories/contentful-trick-provider';
+} from '../../../../data-access-layer/factories/trick-factory';
+
+const cms = process.env.CMS;
 
 export async function generateStaticParams() {
-  const allTricks = await getAllTricks();
+  const allTricks = await getAllTricks(cms);
 
   return allTricks.map((trick) => ({
     game: 'oot',
@@ -18,7 +20,7 @@ export default async function Page({
 }: {
   params: { trickName: string };
 }) {
-  const trick = await getTrick(trickName);
+  const trick = await getTrick(trickName, cms);
   if (trick) {
     return (
       <YoutubeDisplayer

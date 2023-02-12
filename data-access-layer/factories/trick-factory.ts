@@ -11,7 +11,7 @@ import {
 
 export const getTrick = async (
   slug: string,
-  cms: 'Contentful' | 'Sanity'
+  cms: string
 ): Promise<Trick | null> => {
   if (cms === 'Contentful') {
     return await ContentfulGetTrick(slug);

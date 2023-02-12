@@ -1,8 +1,10 @@
 import Link from 'next/link';
-import { getAllTricks } from '../../data-access-layer/factories/contentful-trick-provider';
+import { getAllTricks } from '../../data-access-layer/factories/trick-factory';
+
+const cms = process.env.CMS;
 
 export default async function Page({ params: { game } }) {
-  const tricks = await getAllTricks();
+  const tricks = await getAllTricks(cms);
   return (
     <ul>
       {tricks.map((t) => {
