@@ -28,5 +28,5 @@
     ".next/types/**/*.ts",
     "components/date.js"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "app/(admin)/editor-theme.ts"]
 }
