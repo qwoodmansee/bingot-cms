@@ -1,5 +1,5 @@
 import { Entry, EntryCollection } from 'contentful';
-import { contentfulClient } from './contentful-client';
+import contentfulClient from './contentful-client';
 import { ContentTypeID, ContentEntryByID } from './contentful-types';
 
 export const getEntries = async <

@@ -1,7 +1,7 @@
 import { Entry } from 'contentful';
 import { Trick } from '../../../domain-import-only/Trick';
 import { ITrickFields } from '../@types/generated/contentful';
-import { contentfulClient } from '../contentful-client';
+import contentfulClient from '../contentful-client';
 import { getEntries, getEntry } from '../contentful-content-service';
 import { ContentEntryByID } from '../contentful-types';
 
