@@ -26,9 +26,12 @@ export default function BlogHomePage({ allPosts }: { allPosts: Post[] }) {
             author={heroPost.author}
             slug={heroPost.slug}
             excerpt={heroPost.excerpt}
+            data-cy={'blog-home-hero-post'}
           />
         )}
-        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+        {morePosts.length > 0 && (
+          <MoreStories data-cy={'blog-home-more-stories'} posts={morePosts} />
+        )}
       </Container>
     </>
   );
