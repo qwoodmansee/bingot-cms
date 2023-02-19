@@ -1,7 +1,5 @@
 import { createClient } from 'contentful';
 
-console.log('error here 3?');
-
 const safelyCreateContentfulClient = () => {
   if (
     process.env.CMS === 'Contentful' &&
@@ -15,7 +13,5 @@ const safelyCreateContentfulClient = () => {
       environment: process.env.CONTENTFUL_ENVIRONMENT,
     });
 };
-
-console.log('error here 4?');
 
 export default safelyCreateContentfulClient();

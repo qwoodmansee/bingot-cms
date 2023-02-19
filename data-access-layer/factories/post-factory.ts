@@ -23,7 +23,6 @@ export const getPost = async (
   } else if (cms === 'Sanity') {
     return await SanityGetPost(slug);
   } else if (cms === 'Mock') {
-    console.warn('Mock CMS Being Utilized for GetPost');
     return await MockGetPost(slug);
   } else {
     throw new Error('Selected CMS Not Implemented');
@@ -36,7 +35,6 @@ export const getAllPosts = async (cms: string) => {
   } else if (cms === 'Sanity') {
     return await SanityGetAllPosts();
   } else if (cms === 'Mock') {
-    console.warn('Mock CMS Being Utilized for GetAllPosts');
     return await MockGetAllPosts();
   } else {
     throw new Error('Selected CMS Not Implemented');

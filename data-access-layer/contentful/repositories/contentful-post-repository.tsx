@@ -36,8 +36,6 @@ function convertContentfulPostToPost(contentfulPost: Entry<IPostFields>) {
     picture: contentfulPost.fields.author.fields.picture.fields.file.url,
   };
 
-  // console.log(JSON.stringify(contentfulPost.fields.content));
-
   const post: Post = {
     title: contentfulPost.fields.title,
     coverImage: contentfulPost.fields.coverImage.fields.file.url,

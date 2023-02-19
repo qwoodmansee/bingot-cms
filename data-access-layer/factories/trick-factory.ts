@@ -23,7 +23,6 @@ export const getTrick = async (
   } else if (cms === 'Sanity') {
     return await SanityGetTrick(slug);
   } else if (cms === 'Mock') {
-    console.warn('Mock CMS Being Utilized for GetTrick');
     return await MockGetTrick(slug);
   } else {
     throw new Error('Selected CMS Not Implemented for getTrick');
@@ -36,7 +35,6 @@ export const getAllTricks = async (cms: string) => {
   } else if (cms === 'Sanity') {
     return await SanityGetAllTricks();
   } else if (cms === 'Mock') {
-    console.warn('Mock CMS Being Utilized for GetAllTricks');
     return await MockGetAllTricks();
   } else {
     throw new Error('Selected CMS Not Implemented');
