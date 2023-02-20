@@ -11,8 +11,6 @@ export interface IAuthorFields {
   picture: Asset;
 }
 
-/** An author for the blog posts and other pieces of website content */
-
 export interface IAuthor extends Entry<IAuthorFields> {
   sys: {
     id: string;
@@ -82,8 +80,6 @@ export interface IPostFields {
   /** Author */
   author: IAuthor;
 }
-
-/** A Blog Post for the Developer Blog */
 
 export interface IPost extends Entry<IPostFields> {
   sys: {
@@ -182,7 +178,7 @@ export interface IVariantFields {
   notes?: Document | undefined;
 
   /** Tutorial */
-  tutorial: ITutorial[];
+  tutorial?: Entry<{ [fieldId: string]: unknown }>[] | undefined;
 }
 
 /** A specific "implementation" of a trick, with a specific set of notes and tutorial (video or other) */
