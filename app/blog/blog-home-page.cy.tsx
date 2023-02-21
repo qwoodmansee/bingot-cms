@@ -3,7 +3,7 @@ import BlogHomePage from './blog-home-page';
 
 describe('<BlogHomePage />', () => {
   it('should render and display expected content', async () => {
-    const mockPosts = await getAllPosts('Mock');
+    const mockPosts = await getAllPosts(process.env.CMS);
 
     cy.mount(<BlogHomePage allPosts={mockPosts} />);
 

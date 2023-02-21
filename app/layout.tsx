@@ -3,6 +3,7 @@ import { BingoTeacherNavBar } from '../components/bingo-teacher-components/bingo
 import Footer from '../components/footer';
 import PreviewModeAlert from '../components/preview-mode-alert';
 import '../styles/index.css';
+import { previewData } from 'next/headers';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -15,10 +16,8 @@ const roboto_mono = Roboto_Mono({
 });
 
 export default function RootLayout({
-  preview,
   children,
 }: {
-  preview: boolean;
   children: React.ReactNode;
 }) {
   return (
@@ -26,7 +25,7 @@ export default function RootLayout({
       <body>
         <nav>
           <BingoTeacherNavBar />
-          {preview && <PreviewModeAlert />}
+          {previewData() && <PreviewModeAlert />}
         </nav>
         <main>
           <div className='min-h-screen'>{children}</div>

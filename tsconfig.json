@@ -28,5 +28,9 @@
     ".next/types/**/*.ts",
     "components/date.js"
   ],
-  "exclude": ["node_modules", "app/(admin)/editor-theme.ts"]
+  "exclude": [
+    "node_modules",
+    "app/(admin)/editor-theme.ts",
+    "data-access-layer/sanity/schemas/**"
+  ]
 }
