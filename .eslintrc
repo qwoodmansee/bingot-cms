@@ -11,7 +11,7 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
   "root": true,
-  "ignorePatterns": ["**/data-access-layer/sanity/generated-schema.ts"],
+  "ignorePatterns": [],
   "rules": {
     "@typescript-eslint/quotes": [
       "error",

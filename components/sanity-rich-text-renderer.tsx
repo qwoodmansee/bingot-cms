@@ -12,19 +12,19 @@ export default function SanityRichTextRenderer({ content }) {
           block: ({ children }) => (
             <p className='text-gray-700 leading-7'>{children}</p>
           ),
-          video: ({ node: { asset } }) => (
-            <video
-              className='w-full rounded-lg'
-              src={urlFor(asset).url()}
-              controls
-            />
-          ),
-          quote: ({ node: { author, quote } }) => (
-            <blockquote className='bg-gray-100 p-4 rounded-lg'>
-              <p className='text-gray-700 text-2xl leading-10 mb-4'>{quote}</p>
-              {author && <cite className='text-gray-600'>{author}</cite>}
-            </blockquote>
-          ),
+          // video: ({ node: { asset } }) => (
+          //   <video
+          //     className='w-full rounded-lg'
+          //     src={urlFor(asset).url()}
+          //     controls
+          //   />
+          // ),
+          // quote: ({ node: { author, quote } }) => (
+          //   <blockquote className='bg-gray-100 p-4 rounded-lg'>
+          //     <p className='text-gray-700 text-2xl leading-10 mb-4'>{quote}</p>
+          //     {author && <cite className='text-gray-600'>{author}</cite>}
+          //   </blockquote>
+          // ),
           code: ({ node: { language, code } }) => (
             <pre className='bg-gray-100 p-4 rounded-lg overflow-x-scroll'>
               <code className={`language-${language}`}>{code}</code>

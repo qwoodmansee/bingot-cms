@@ -1,5 +1,6 @@
 import { createClient } from 'next-sanity';
 import { cache } from 'react';
+import createImageUrlBuilder from '@sanity/image-url';
 
 export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
@@ -14,3 +15,6 @@ const client = createClient({
 
 // Wrap the cache function in a way that reuses the TypeScript definitions
 export const clientFetch = cache(client.fetch.bind(client));
+
+export const urlFor = (source: any) =>
+  createImageUrlBuilder(client).image(source);
