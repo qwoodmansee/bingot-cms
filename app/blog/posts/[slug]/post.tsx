@@ -19,7 +19,6 @@ export default function PostScreen({
   morePosts: Array<Post>;
   cmsRichTextRenderingStrategy: string;
 }) {
-  console.log(post);
   return (
     <Container>
       <>

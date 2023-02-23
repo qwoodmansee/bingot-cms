@@ -21,13 +21,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en' className={`${inter.variable} ${roboto_mono.variable}`}>
+    <html
+      lang='en'
+      className={`${inter.variable} ${roboto_mono.variable} bg-gray-800 text-white`}
+    >
       <body>
-        <nav>
+        <nav className='bg-gray-900'>
           <BingoTeacherNavBar />
           {previewData() && <PreviewModeAlert />}
         </nav>
-        <main>
+        <main className='container mx-auto'>
           <div className='min-h-screen'>{children}</div>
         </main>
         <Footer />

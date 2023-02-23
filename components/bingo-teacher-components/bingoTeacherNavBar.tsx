@@ -4,7 +4,7 @@ import React from 'react';
 
 export const BingoTeacherNavBar = () => {
   return (
-    <Navbar className='bg-white text-gray-600'>
+    <Navbar className=''>
       <NavbarBrand href='#'> </NavbarBrand>
       <NavbarToggler />
       <NavbarCollapse>
@@ -29,12 +29,12 @@ export const BingoTeacherNavBar = () => {
 /* Navbar logic */
 
 const style = {
-  navbar: `fixed px-4 py-2 shadow top-0 w-full lg:flex lg:flex-row lg:items-center lg:justify-start lg:relative`,
-  brand: `cursor-pointer font-bold inline-block mr-4 py-1.5 text-2xl whitespace-nowrap hover:text-gray-200`,
-  toggler: `block float-right text-4xl lg:hidden focus:outline-none focus:shadow`,
-  item: `whitespace-pre cursor-pointer px-4 py-3 hover:text-gray-200`,
+  navbar: `fixed px-4 py-2 top-0 w-full lg:flex lg:flex-row lg:items-center lg:justify-start lg:relative bg-secondary-600 shadow-md`,
+  brand: `cursor-pointer font-bold inline-block mr-4 py-1.5 text-2xl whitespace-nowrap text-primary-100 hover:text-gray-200`,
+  toggler: `block float-right text-4xl lg:hidden focus:outline-none focus:shadow text-primary-100`,
+  item: `whitespace-pre cursor-pointer px-4 py-3 hover:text-gray-200 text-primary-100`,
   collapse: {
-    default: `border-t border-gray-200 fixed left-0 mt-2 shadow py-2 text-center lg:border-none lg:flex lg:flex-grow lg:items-center lg:mt-0 lg:py-0 lg:relative lg:shadow-none`,
+    default: `border-t border-gray-200 fixed left-0 mt-2 shadow py-2 text-center lg:border-none lg:flex lg:flex-grow lg:items-center lg:mt-0 lg:py-0 lg:relative lg:shadow-none bg-secondary-600`,
     open: `h-auto visible transition-all duration-500 ease-out w-full opacity-100 lg:transition-none`,
     close: `h-auto invisible w-0 transition-all duration-300 ease-in lg:opacity-100 lg:transition-none lg:visible`,
   },
