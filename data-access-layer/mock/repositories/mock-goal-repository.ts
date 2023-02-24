@@ -8,17 +8,19 @@ export const getGoalsFromNames = async (goalNames: string[]) => {
 const createExampleGoal = (name: string) => {
   const goal: Goal = {
     name: name,
-    notes: `Fake notes for goal ${name}`,
+    notes: `RBA Bugs with Odd Potion then Saw on C-Right then collect two additional songs.`,
     tricks: [
       {
-        name: 'Fake Trick One',
-        videoUrl:
-          'https://youtu.be/T57Hfh3bWr8?list=TLPQMjAwNjIwMjCT5KarRPwM5g&t=72',
+        name: 'All 5 Spirit Skulls Route',
+        videoUrl: 'https://youtu.be/eeT4BRTQN8Y?t=111',
       },
       {
-        name: 'Fake Trick Two',
-        videoUrl:
-          'https://youtu.be/T57Hfh3bWr8?list=TLPQMjAwNjIwMjCT5KarRPwM5g&t=72',
+        name: 'Spirit Entrance Block Skip',
+        videoUrl: 'https://youtu.be/QisEMB_uNRA',
+      },
+      {
+        name: 'Defeat Skull Kid ISG',
+        videoUrl: 'https://youtu.be/i7htaVwLJm4',
       },
     ],
   };
