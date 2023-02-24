@@ -1,50 +1,8 @@
-import {defineField, defineType} from 'sanity'
+import { SchemaBuilder } from 'sanity-schema-builder';
 
-export default defineType({
-  name: 'author',
-  title: 'Author',
-  type: 'document',
-  fields: [
-    defineField({
-      name: 'name',
-      title: 'Name',
-      type: 'string',
-    }),
-    defineField({
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'name',
-        maxLength: 96,
-      },
-    }),
-    defineField({
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    }),
-    defineField({
-      name: 'bio',
-      title: 'Bio',
-      type: 'array',
-      of: [
-        {
-          title: 'Block',
-          type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
-          lists: [],
-        },
-      ],
-    }),
-  ],
-  preview: {
-    select: {
-      title: 'name',
-      media: 'image',
-    },
-  },
-})
+const S = new SchemaBuilder();
+
+export default S.document('author')
+  .title('Author')
+  .fields([S.string('name').title('Name'), S.image('picture').title('Picture')])
+  .generate();
