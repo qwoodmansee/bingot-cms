@@ -50,7 +50,7 @@ export default function LandingPageCTAs() {
   return (
     <div className='flex flex-col justify-between  space-x-4 lg:flex-row lg:justify-center'>
       <LearnButton label='Learn' href='/learn' />
-      <BingoButton label='Bingo' href='/play' />
+      <BingoButton label='Bingo' href='/play/bingo' />
       <ContributeButton label='Contribute' href='/contribute' />
     </div>
   );
