@@ -11,11 +11,12 @@ interface TrickDisplayProps {
 }
 
 const TrickDisplay = ({ trick }: TrickDisplayProps) => {
+  const bgColor = trick.isFundamental ? 'bg-secondary text-white' : 'bg-white';
   return (
-    <>
+    <div className={`${bgColor} shadow-lg rounded-lg p-4 font-bold`}>
       <h4>{trick.name}</h4>
       <YoutubeDisplayer title={trick.name} youtubeVideo={trick.video} />
-    </>
+    </div>
   );
 };
 
@@ -38,7 +39,7 @@ const GoalDisplay = ({ goal }: GoalDisplayProps) => {
           className='text-lg lg:text-xl font-bold bg-transparent text-pink-500 border-2 border-pink-500 py-2 px-4 rounded-full shadow hover:bg-pink-500 hover:text-white transition-colors duration-300 focus:outline-none'
           onClick={toggle}
         >
-          Toggle
+          {isOpen ? 'Hide' : 'Show'}
         </button>
       </div>
       <Collapse isOpen={isOpen}>
@@ -48,9 +49,7 @@ const GoalDisplay = ({ goal }: GoalDisplayProps) => {
               key={t.name}
               className='w-full sm:w-1/2 md:w-1/3 lg:w-1/5 p-4 lg:p-2'
             >
-              <div className='bg-white shadow-lg rounded-lg p-4'>
-                <TrickDisplay trick={t} />
-              </div>
+              <TrickDisplay trick={t} />
             </div>
           ))}
         </div>

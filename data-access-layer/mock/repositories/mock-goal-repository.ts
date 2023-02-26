@@ -16,6 +16,7 @@ const createExampleGoal = (name: string) => {
           videoId: 'eeT4BRTQN8Y',
           startTimeInSeconds: 110,
         },
+        isFundamental: false,
       },
       {
         name: 'Spirit Entrance Block Skip',
@@ -23,6 +24,7 @@ const createExampleGoal = (name: string) => {
           videoId: 'QisEMB_uNRA',
           startTimeInSeconds: 0,
         },
+        isFundamental: false,
       },
       {
         name: 'Defeat Skull Kid ISG',
@@ -30,6 +32,23 @@ const createExampleGoal = (name: string) => {
           videoId: 'i7htaVwLJm4',
           startTimeInSeconds: 0,
         },
+        isFundamental: false,
+      },
+      {
+        name: 'Shadow Temple Early (Hookshot Jump)',
+        video: {
+          videoId: 'HTU0fKl-6uQ',
+          startTimeInSeconds: 4,
+        },
+        isFundamental: true,
+      },
+      {
+        name: 'Equip Swap',
+        video: {
+          videoId: 'Ul2ipeV5npQ',
+          startTimeInSeconds: 14,
+        },
+        isFundamental: true,
       },
     ],
   };
