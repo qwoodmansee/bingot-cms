@@ -3,7 +3,13 @@ import { getGoalsFromNames } from '../../../data-access-layer/factories/goal-fac
 
 export default async function Page() {
   const goals = await getGoalsFromNames(
-    ['Fake Goal One', 'Fake Goal Two', 'Fake Goal Three'],
+    [
+      '7 Songs',
+      'All 5 Skulltulas in Sprit Temple',
+      'Defeat a Skull Kid',
+      'Keaton Mask',
+      'Clear 10 Silver Rupee Rooms',
+    ],
     process.env.CMS
   );
   return <BingoAssistant goals={goals} />;

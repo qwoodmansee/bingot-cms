@@ -13,8 +13,8 @@ const createExampleGoal = (name: string) => {
       {
         name: 'All 5 Spirit Skulls Route',
         video: {
-          videoId: '',
-          startTimeInSeconds: 100,
+          videoId: 'eeT4BRTQN8Y',
+          startTimeInSeconds: 110,
         },
       },
       {
