@@ -22,7 +22,13 @@ export default async function Page({
 }) {
   const trick = await getTrick(trickName, cms);
   if (trick) {
-    return <YoutubeDisplayer key={`${trick.name}`} videoUrl={trick.videoUrl} />;
+    return (
+      <YoutubeDisplayer
+        key={`${trick.name}`}
+        title={trick.name}
+        youtubeVideo={trick.video}
+      />
+    );
   }
 
   return <>No Trick Found I guess</>;

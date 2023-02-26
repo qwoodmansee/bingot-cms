@@ -3,8 +3,10 @@ import { Trick } from '../../../domain-import-only/Trick';
 export const getTrick = async (slug: string) => {
   const trick: Trick = {
     name: 'Fake Trick',
-    videoUrl:
-      'https://youtu.be/T57Hfh3bWr8?list=TLPQMjAwNjIwMjCT5KarRPwM5g&t=72',
+    video: {
+      videoId: 'T57Hfh3bWr8',
+      startTimeInSeconds: 72,
+    },
   };
   return trick;
 };
@@ -12,14 +14,18 @@ export const getTrick = async (slug: string) => {
 export const getAllTricks = async () => {
   const trickOne: Trick = {
     name: 'Fake Trick One',
-    videoUrl:
-      'https://youtu.be/T57Hfh3bWr8?list=TLPQMjAwNjIwMjCT5KarRPwM5g&t=72',
+    video: {
+      videoId: 'T57Hfh3bWr8',
+      startTimeInSeconds: 0,
+    },
   };
 
   const trickTwo: Trick = {
     name: 'Fake Trick Two',
-    videoUrl:
-      'https://youtu.be/T57Hfh3bWr8?list=TLPQMjAwNjIwMjCT5KarRPwM5g&t=72',
+    video: {
+      videoId: 'QisEMB_uNRA',
+      startTimeInSeconds: 0,
+    },
   };
   return [trickOne, trickTwo];
 };

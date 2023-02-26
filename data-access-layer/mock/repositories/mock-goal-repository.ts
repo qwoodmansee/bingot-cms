@@ -12,15 +12,24 @@ const createExampleGoal = (name: string) => {
     tricks: [
       {
         name: 'All 5 Spirit Skulls Route',
-        videoUrl: 'https://youtu.be/eeT4BRTQN8Y?t=111',
+        video: {
+          videoId: '',
+          startTimeInSeconds: 100,
+        },
       },
       {
         name: 'Spirit Entrance Block Skip',
-        videoUrl: 'https://youtu.be/QisEMB_uNRA',
+        video: {
+          videoId: 'QisEMB_uNRA',
+          startTimeInSeconds: 0,
+        },
       },
       {
         name: 'Defeat Skull Kid ISG',
-        videoUrl: 'https://youtu.be/i7htaVwLJm4',
+        video: {
+          videoId: 'i7htaVwLJm4',
+          startTimeInSeconds: 0,
+        },
       },
     ],
   };

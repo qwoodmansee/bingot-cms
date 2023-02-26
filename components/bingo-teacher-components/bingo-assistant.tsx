@@ -12,7 +12,7 @@ const TrickDisplay = ({ trick }: TrickDisplayProps) => {
   return (
     <>
       <h4>{trick.name}</h4>
-      <YoutubeDisplayer videoUrl={trick.videoUrl} />
+      <YoutubeDisplayer title={trick.name} youtubeVideo={trick.video} />
     </>
   );
 };
