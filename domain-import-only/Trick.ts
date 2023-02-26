@@ -1,4 +1,6 @@
+import { YoutubeVideo } from './YoutubeVideo';
+
 export interface Trick {
   name: string;
-  videoUrl: string;
+  video: YoutubeVideo;
 }
