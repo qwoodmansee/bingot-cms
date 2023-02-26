@@ -4,6 +4,7 @@ import { ITrickFields } from '../@types/generated/contentful';
 import contentfulClient from '../contentful-client';
 import { getEntries, getEntry } from '../contentful-content-service';
 import { ContentEntryByID } from '../contentful-types';
+import { videoId as GetYoutubeIdFromUrl } from '@gonetone/get-youtube-id-by-url';
 
 export const getTrick = async (name: string): Promise<Trick | null> => {
   const trickAsArray = await contentfulClient.getEntries<
@@ -18,12 +19,7 @@ export const getTrick = async (name: string): Promise<Trick | null> => {
   }
 
   const contentfulTrick = trickAsArray.items[0];
-  const videoUrl = await getVideoUrlFromContentfulTrick(contentfulTrick);
-
-  const trick: Trick = {
-    name: contentfulTrick.fields.name,
-    videoUrl: videoUrl,
-  };
+  const trick = await _createTrickFromContentfulTrick(contentfulTrick);
 
   return trick;
 };
@@ -36,21 +32,17 @@ export const getAllTricks = async () => {
 
   const mappedTricks = await Promise.all(
     allTricks.items.map(async (t) => {
-      const videoUrl = await getVideoUrlFromContentfulTrick(t);
-      const trick: Trick = {
-        name: t.fields.name,
-        videoUrl: videoUrl,
-      };
-
+      const trick = await _createTrickFromContentfulTrick(t);
       return trick;
     })
   );
 
   return mappedTricks;
 };
-async function getVideoUrlFromContentfulTrick(
+
+const _getVideoUrlFromContentfulTrick = async (
   contentfulTrick: Entry<ITrickFields>
-) {
+) => {
   let videoUrl = '';
   if (
     contentfulTrick.fields.variants &&
@@ -64,4 +56,20 @@ async function getVideoUrlFromContentfulTrick(
     videoUrl = tutorial.fields.youtubeUrl;
   }
   return videoUrl;
-}
+};
+
+const _createTrickFromContentfulTrick = async (contentfulTrick) => {
+  const videoUrl = await _getVideoUrlFromContentfulTrick(contentfulTrick);
+  const videoId = await GetYoutubeIdFromUrl(videoUrl);
+  const startTime = 0; // TODO:fix this if we want to go back to contentful
+
+  const trick: Trick = {
+    name: contentfulTrick.fields.name,
+    video: {
+      videoId,
+      startTimeInSeconds: startTime,
+    },
+  };
+
+  return trick;
+};
