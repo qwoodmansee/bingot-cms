@@ -15,8 +15,10 @@ export default function YoutubeDisplayer({
   return (
     <div className='aspect-w-16 aspect-h-9'>
       <LiteYouTubeEmbed
+        iframeClass='w-full h-full'
+        playerClass='hidden'
         title={title}
-        adNetwork={false}
+        poster='hqdefault'
         id={youtubeVideo.videoId}
         params={`start=${youtubeVideo.startTimeInSeconds}`}
       />
