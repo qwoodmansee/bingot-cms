@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Goal } from '../../domain-import-only/Goal';
 import { Trick } from '../../domain-import-only/Trick';
 import Collapse from '../tailwind-components-kimia-ui/collapse/collapse';
+import { CheckboxButton } from './checkbox-button';
 import YoutubeDisplayer from './youtube-displayer';
 
 interface TrickDisplayProps {
@@ -22,9 +23,10 @@ const TrickDisplay = ({ trick }: TrickDisplayProps) => {
 
 interface GoalDisplayProps {
   goal: Goal;
+  showFundamentals: boolean;
 }
 
-const GoalDisplay = ({ goal }: GoalDisplayProps) => {
+const GoalDisplay = ({ goal, showFundamentals }: GoalDisplayProps) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const toggle = () => {
@@ -42,16 +44,23 @@ const GoalDisplay = ({ goal }: GoalDisplayProps) => {
           {isOpen ? 'Hide' : 'Show'}
         </button>
       </div>
+
       <Collapse isOpen={isOpen}>
         <div className='flex flex-wrap justify-center lg:justify-start'>
-          {goal.tricks.map((t) => (
-            <div
-              key={t.name}
-              className='w-full sm:w-1/2 md:w-1/3 lg:w-1/5 p-4 lg:p-2'
-            >
-              <TrickDisplay trick={t} />
-            </div>
-          ))}
+          {goal.tricks.map((t) => {
+            if (t.isFundamental && !showFundamentals) {
+              return null;
+            }
+
+            return (
+              <div
+                key={t.name}
+                className='w-full sm:w-1/2 md:w-1/2 lg:w-1/3 p-4 lg:p-2'
+              >
+                <TrickDisplay trick={t} />
+              </div>
+            );
+          })}
         </div>
       </Collapse>
     </div>
@@ -63,10 +72,21 @@ interface BingoAssistantProps {
 }
 
 export const BingoAssistant = ({ goals }: BingoAssistantProps) => {
+  const [showFundamentals, setShowFundamentals] = useState(false);
   return (
     <div>
+      <CheckboxButton
+        initialViewState={showFundamentals}
+        onToggle={() => setShowFundamentals(!showFundamentals)}
+      >
+        {showFundamentals ? 'Hide Fundmentals' : 'Show Fundamentals'}
+      </CheckboxButton>
       {goals.map((g, i) => (
-        <GoalDisplay goal={g} key={`${g.name}${i}`} />
+        <GoalDisplay
+          goal={g}
+          key={`${g.name}${i}`}
+          showFundamentals={showFundamentals}
+        />
       ))}
     </div>
   );
