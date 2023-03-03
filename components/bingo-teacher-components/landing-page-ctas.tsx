@@ -46,11 +46,11 @@ function LearnButton({ label, href }) {
   );
 }
 
-export default function LandingPageCTAs() {
+export default function LandingPageCTAs({ gameSlug }) {
   return (
     <div className='flex flex-col justify-between  space-x-4 lg:flex-row lg:justify-center'>
-      <LearnButton label='Learn' href='/learn' />
-      <BingoButton label='Bingo' href='/play/bingo' />
+      <LearnButton label='Learn' href={`${gameSlug}/learn`} />
+      <BingoButton label='Bingo' href={`${gameSlug}/play/bingo`} />
       <ContributeButton label='Contribute' href='/contribute' />
     </div>
   );
