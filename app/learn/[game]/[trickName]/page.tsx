@@ -20,7 +20,7 @@ export default async function Page({
 }: {
   params: { trickName: string };
 }) {
-  const trick = await getTrick(trickName, cms);
+  const trick = await getTrick(decodeURI(trickName), cms);
   if (trick) {
     return (
       <YoutubeDisplayer

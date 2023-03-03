@@ -31,3 +31,27 @@ export const getEmbedUrl = (videoUrl: string) => {
 
   return result;
 };
+
+export const inconsistentMvpGetVideoIdFromUrl = (videoUrl: string) => {
+  const isShortUrl = videoUrl.indexOf('.be/') !== -1;
+  if (isShortUrl) {
+    const withQueryParams = videoUrl.split('.be/')[1];
+    return withQueryParams.split('?')[0];
+  }
+
+  const hasVQueryParam = videoUrl.indexOf('v=') !== -1;
+
+  if (hasVQueryParam) {
+    const urlParams = new URLSearchParams(videoUrl.split('?')[1]);
+    return urlParams.get('v');
+  }
+
+  return null;
+};
+
+export const inconsistentMvpGetStartTimeFromUrl = (videoUrl: string) => {
+  const urlParams = new URLSearchParams(videoUrl.split('?')[1]);
+  const timeAsString = urlParams.get('t');
+  if (timeAsString === null || timeAsString === '') return 0;
+  return parseInt(timeAsString);
+};

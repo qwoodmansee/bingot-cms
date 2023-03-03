@@ -1,33 +1,79 @@
+import {
+  inconsistentMvpGetStartTimeFromUrl,
+  inconsistentMvpGetVideoIdFromUrl,
+} from '../../../components/utils/get_youtube_embed_url';
 import { Trick } from '../../../domain-import-only/Trick';
 
-export const getTrick = async (slug: string) => {
-  const trick: Trick = {
+export const getTrick = async (trickName: string) => {
+  const tricksByName = _legacy_tricks()
+    .filter((lt) => lt.trickName == trickName)
+    .map((lt) => {
+      if (lt.trickUrl) {
+        return _legacy_trick_to_trick(lt);
+      } else {
+        return null;
+      }
+    });
+
+  const fallbackTrick: Trick = {
     name: 'Fake Trick',
     video: {
       videoId: 'T57Hfh3bWr8',
       startTimeInSeconds: 72,
     },
   };
-  return trick;
+  return tricksByName.length > 0 ? tricksByName[0] : fallbackTrick;
 };
 
 export const getAllTricks = async () => {
-  const trickOne: Trick = {
-    name: 'Fake Trick One',
+  return _legacy_tricks()
+    .filter((lt) => lt.trickUrl !== null)
+    .map((lt) => {
+      if (lt.trickUrl) {
+        return _legacy_trick_to_trick(lt);
+      } else {
+        return null;
+      }
+    });
+};
+
+interface LegacyTrick {
+  id: string;
+  trickName: string;
+  trickUrl?: string;
+  isFundamental: boolean;
+  usuallyRequired: boolean;
+  isMovement: boolean;
+  v1Only: boolean;
+  routing: boolean;
+  practiceSection?: string;
+  notes?: string;
+}
+
+const _legacy_trick_to_trick = (legacyTrick: LegacyTrick) => {
+  let videoId =
+    legacyTrick.trickUrl &&
+    inconsistentMvpGetVideoIdFromUrl(legacyTrick.trickUrl);
+  if (!videoId) {
+    videoId = 'gtlcv8K2z1Q'; // just some video
+  }
+
+  let startTime =
+    legacyTrick.trickUrl &&
+    inconsistentMvpGetStartTimeFromUrl(legacyTrick.trickUrl);
+  if (!startTime) {
+    startTime = 0;
+  }
+
+  const trick: Trick = {
+    name: legacyTrick.trickName,
     video: {
-      videoId: 'T57Hfh3bWr8',
-      startTimeInSeconds: 0,
+      videoId: videoId,
+      startTimeInSeconds: startTime,
     },
   };
 
-  const trickTwo: Trick = {
-    name: 'Fake Trick Two',
-    video: {
-      videoId: 'QisEMB_uNRA',
-      startTimeInSeconds: 0,
-    },
-  };
-  return [trickOne, trickTwo];
+  return trick;
 };
 
 /** PREVIOUS SOURCE DATA */
@@ -923,7 +969,7 @@ const _legacy_tricks = () => {
     },
     {
       id: '4E0619E0',
-      trickName: ['One Water Key (No ZL', 'No Iron Boots)'],
+      trickName: 'One Water Key (No ZL, No Iron Boots)',
       trickUrl: 'https://www.youtube.com/watch?v=GjUgW0W4-oY',
       isFundamental: false,
       usuallyRequired: false,
