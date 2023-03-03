@@ -1,5 +1,5 @@
-import { BingoAssistant } from '../../../components/bingo-teacher-components/bingo-assistant';
-import { getGoalsFromNames } from '../../../data-access-layer/factories/goal-factory';
+import { BingoAssistant } from '../../../../components/bingo-teacher-components/bingo-assistant';
+import { getGoalsFromNames } from '../../../../data-access-layer/factories/goal-factory';
 
 export default async function Page() {
   const goals = await getGoalsFromNames(
