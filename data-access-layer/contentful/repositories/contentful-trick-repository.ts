@@ -5,6 +5,7 @@ import contentfulClient from '../contentful-client';
 import { getEntries, getEntry } from '../contentful-content-service';
 import { ContentEntryByID } from '../contentful-types';
 import { videoId as GetYoutubeIdFromUrl } from '@gonetone/get-youtube-id-by-url';
+import { YoutubeVideo } from '../../../domain-import-only/YoutubeVideo';
 
 export const getTrick = async (name: string): Promise<Trick | null> => {
   const trickAsArray = await contentfulClient.getEntries<
@@ -65,11 +66,13 @@ const _createTrickFromContentfulTrick = async (contentfulTrick) => {
 
   const trick: Trick = {
     name: contentfulTrick.fields.name,
-    video: {
+    video: YoutubeVideo.create({
       videoId,
       startTimeInSeconds: startTime,
-    },
-  };
+    }),
+    description: '',
+    difficulty: 1,
+  });
 
   return trick;
 };

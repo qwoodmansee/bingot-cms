@@ -26,7 +26,10 @@ export default async function Page({
       <YoutubeDisplayer
         key={`${trick.name}`}
         title={trick.name}
-        youtubeVideo={trick.video}
+        youtubeVideo={{
+          videoId: trick.video.videoId,
+          startTimeInSeconds: trick.video.startTimeInSeconds,
+        }}
       />
     );
   }

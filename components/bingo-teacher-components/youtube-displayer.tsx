@@ -1,10 +1,10 @@
 'use client';
 import React from 'react';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
-import { YoutubeVideo } from '../../domain-import-only/YoutubeVideo';
+import { IYoutubeVideoProps } from '../../domain-import-only/YoutubeVideo';
 
 export interface YoutubeDisplayerProps {
-  youtubeVideo: YoutubeVideo;
+  youtubeVideo: IYoutubeVideoProps;
   title: string;
 }
 
