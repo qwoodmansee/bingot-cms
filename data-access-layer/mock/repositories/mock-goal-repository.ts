@@ -452,7 +452,6 @@ const LEGACY_SOURCE_GOALS: LegacyGoal[] = [
       'A17F4252',
       '1E196CEA',
       '70DAAA62',
-      '70DAAA62',
       'DD4D7F1C',
       'C3FBA8DC',
     ],
