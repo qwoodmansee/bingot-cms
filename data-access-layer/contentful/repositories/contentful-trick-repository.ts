@@ -64,7 +64,7 @@ const _createTrickFromContentfulTrick = async (contentfulTrick) => {
   const videoId = await GetYoutubeIdFromUrl(videoUrl);
   const startTime = 0; // TODO:fix this if we want to go back to contentful
 
-  const trick: Trick = {
+  const trick: Trick = Trick.create({
     name: contentfulTrick.fields.name,
     video: YoutubeVideo.create({
       videoId,

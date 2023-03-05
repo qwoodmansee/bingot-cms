@@ -2,13 +2,13 @@
 
 import { useState } from 'react';
 import { Goal } from '../../domain-import-only/Goal';
-import { Trick } from '../../domain-import-only/Trick';
+import { TrickDto } from '../../data-access-layer/mappers/trick-mapper';
 import Collapse from '../tailwind-components-kimia-ui/collapse/collapse';
 import { CheckboxButton } from './checkbox-button';
 import YoutubeDisplayer from './youtube-displayer';
 
 interface TrickDisplayProps {
-  trick: Trick;
+  trick: TrickDto;
 }
 
 const TrickDisplay = ({ trick }: TrickDisplayProps) => {

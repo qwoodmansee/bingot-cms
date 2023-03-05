@@ -3,39 +3,47 @@ import {
   inconsistentMvpGetVideoIdFromUrl,
 } from '../../../components/utils/get_youtube_embed_url';
 import { Trick } from '../../../domain-import-only/Trick';
+import { YoutubeVideo } from '../../../domain-import-only/YoutubeVideo';
+import { ITrickReporistory } from '../../repository-interfaces/trick-repository';
 
-export const getTrick = async (trickName: string) => {
-  const tricksByName = _legacy_tricks()
-    .filter((lt) => lt.trickName == trickName)
-    .map((lt) => {
-      if (lt.trickUrl) {
-        return _legacy_trick_to_trick(lt);
-      } else {
-        return null;
-      }
+export class MockTrickRepository implements ITrickReporistory {
+  async getTrick(trickName: string): Promise<Trick> {
+    const tricksByName = _legacy_tricks()
+      .filter((lt) => lt.trickName == trickName)
+      .map((lt) => {
+        if (lt.trickUrl) {
+          return _legacy_trick_to_trick(lt);
+        } else {
+          return null;
+        }
+      });
+
+    const fallbackTrick: Trick = Trick.create({
+      name: 'Fake Trick',
+      video: YoutubeVideo.create({
+        videoId: 'T57Hfh3bWr8',
+        startTimeInSeconds: 72,
+      }),
+      description: 'Fake Description',
+      isFundamental: false,
+      difficulty: 2,
     });
 
-  const fallbackTrick: Trick = {
-    name: 'Fake Trick',
-    video: {
-      videoId: 'T57Hfh3bWr8',
-      startTimeInSeconds: 72,
-    },
-  };
-  return tricksByName.length > 0 ? tricksByName[0] : fallbackTrick;
-};
+    return tricksByName.length > 0 ? tricksByName[0] : fallbackTrick;
+  }
 
-export const getAllTricks = async () => {
-  return _legacy_tricks()
-    .filter((lt) => lt.trickUrl !== null)
-    .map((lt) => {
-      if (lt.trickUrl) {
-        return _legacy_trick_to_trick(lt);
-      } else {
-        return null;
-      }
-    });
-};
+  async getAllTricks(): Promise<Trick[]> {
+    return _legacy_tricks()
+      .filter((lt) => lt.trickUrl !== null)
+      .map((lt) => {
+        if (lt.trickUrl) {
+          return _legacy_trick_to_trick(lt);
+        } else {
+          return null;
+        }
+      });
+  }
+}
 
 interface LegacyTrick {
   id: string;
@@ -65,13 +73,15 @@ const _legacy_trick_to_trick = (legacyTrick: LegacyTrick) => {
     startTime = 0;
   }
 
-  const trick: Trick = {
+  const trick = Trick.create({
     name: legacyTrick.trickName,
-    video: {
+    video: YoutubeVideo.create({
       videoId: videoId,
       startTimeInSeconds: startTime,
-    },
-  };
+    }),
+    description: legacyTrick.notes,
+    difficulty: legacyTrick.isFundamental ? 1 : 2,
+  });
 
   return trick;
 };
