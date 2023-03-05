@@ -2,6 +2,7 @@ import { Entity } from './utility-classes/Entity';
 import { YoutubeVideo } from './YoutubeVideo';
 
 export interface ITrickProps {
+  id?: string;
   name: string;
   description: string;
   video: YoutubeVideo;
@@ -11,7 +12,7 @@ export interface ITrickProps {
 
 export class Trick extends Entity<ITrickProps> {
   private constructor(props: ITrickProps) {
-    super(props, props.name);
+    super(props, props.id || props.name);
   }
 
   public static create(props: ITrickProps): Trick {

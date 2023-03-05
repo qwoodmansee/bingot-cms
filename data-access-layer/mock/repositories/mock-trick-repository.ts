@@ -33,15 +33,9 @@ export class MockTrickRepository implements ITrickReporistory {
   }
 
   async getAllTricks(): Promise<Trick[]> {
-    return _legacy_tricks()
-      .filter((lt) => lt.trickUrl !== null)
-      .map((lt) => {
-        if (lt.trickUrl) {
-          return _legacy_trick_to_trick(lt);
-        } else {
-          return null;
-        }
-      });
+    return _legacy_tricks().map((lt) => {
+      return _legacy_trick_to_trick(lt);
+    });
   }
 }
 
@@ -74,6 +68,7 @@ const _legacy_trick_to_trick = (legacyTrick: LegacyTrick) => {
   }
 
   const trick = Trick.create({
+    id: legacyTrick.id,
     name: legacyTrick.trickName,
     video: YoutubeVideo.create({
       videoId: videoId,
