@@ -9,10 +9,7 @@ import {
   getTrick as SanityGetTrick,
 } from '../sanity/repositories/sanity-trick-repository';
 
-import {
-  getAllTricks as MockGetAllTricks,
-  getTrick as MockGetTrick,
-} from '../mock/repositories/mock-trick-repository';
+import { MockTrickRepository } from '../mock/repositories/mock-trick-repository';
 
 export const getTrick = async (
   slug: string,
@@ -23,7 +20,8 @@ export const getTrick = async (
   } else if (cms === 'Sanity') {
     return await SanityGetTrick(slug);
   } else if (cms === 'Mock') {
-    return await MockGetTrick(slug);
+    const repository = new MockTrickRepository();
+    return await repository.getTrick(slug);
   } else {
     throw new Error('Selected CMS Not Implemented for getTrick');
   }
@@ -35,7 +33,8 @@ export const getAllTricks = async (cms: string) => {
   } else if (cms === 'Sanity') {
     return await SanityGetAllTricks();
   } else if (cms === 'Mock') {
-    return await MockGetAllTricks();
+    const repository = new MockTrickRepository();
+    return await repository.getAllTricks();
   } else {
     throw new Error('Selected CMS Not Implemented');
   }

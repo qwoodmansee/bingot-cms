@@ -1,14 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { Goal } from '../../domain-import-only/Goal';
-import { Trick } from '../../domain-import-only/Trick';
+import { GoalDto } from '../../data-access-layer/mappers/goal-mapper';
+import { TrickDto } from '../../data-access-layer/mappers/trick-mapper';
 import Collapse from '../tailwind-components-kimia-ui/collapse/collapse';
 import { CheckboxButton } from './checkbox-button';
 import YoutubeDisplayer from './youtube-displayer';
 
 interface TrickDisplayProps {
-  trick: Trick;
+  trick: TrickDto;
 }
 
 const TrickDisplay = ({ trick }: TrickDisplayProps) => {
@@ -22,7 +22,7 @@ const TrickDisplay = ({ trick }: TrickDisplayProps) => {
 };
 
 interface GoalDisplayProps {
-  goal: Goal;
+  goal: GoalDto;
   showFundamentals: boolean;
 }
 
@@ -68,7 +68,7 @@ const GoalDisplay = ({ goal, showFundamentals }: GoalDisplayProps) => {
 };
 
 interface BingoAssistantProps {
-  goals: Array<Goal>;
+  goals: Array<GoalDto>;
 }
 
 export const BingoAssistant = ({ goals }: BingoAssistantProps) => {
