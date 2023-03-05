@@ -5,7 +5,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate:contentful": "contentful-typescript-codegen --output contenful/@types/generated/contentful.d.t",
+    "generate:contentful": "contentful-typescript-codegen --output contentful/@types/generated/contentful.d.t",
     "migrate:sanity": "npx ",
     "e2e:ui": "start-server-and-test dev http://localhost:3000 \"cypress open --e2e\"",
     "e2e": "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\"",
