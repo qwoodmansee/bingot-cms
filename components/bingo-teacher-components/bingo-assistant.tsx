@@ -1,8 +1,10 @@
 'use client';
 
+import React from 'react';
 import { useState } from 'react';
 import { GoalDto } from '../../data-access-layer/mappers/goal-mapper';
 import { TrickDto } from '../../data-access-layer/mappers/trick-mapper';
+import Autocomplete from '../tailwind-components-kimia-ui/autocomplete/autocomplete';
 import Collapse from '../tailwind-components-kimia-ui/collapse/collapse';
 import { CheckboxButton } from './checkbox-button';
 import YoutubeDisplayer from './youtube-displayer';
@@ -73,6 +75,10 @@ interface BingoAssistantProps {
 
 export const BingoAssistant = ({ goals }: BingoAssistantProps) => {
   const [showFundamentals, setShowFundamentals] = useState(false);
+  const [goalName, setGoalName] = React.useState('');
+  const allGoalNames = goals.map((g) => g.name);
+  const goalsToDisplay = goals.filter((g) => g.name === goalName);
+
   return (
     <div>
       <CheckboxButton
@@ -81,7 +87,18 @@ export const BingoAssistant = ({ goals }: BingoAssistantProps) => {
       >
         {showFundamentals ? 'Hide Fundmentals' : 'Show Fundamentals'}
       </CheckboxButton>
-      {goals.map((g, i) => (
+      <div className='m-8'>
+        <Autocomplete
+          value={goalName}
+          setValue={setGoalName}
+          name='search'
+          label='Goals'
+          placeholder='Search for a goal...'
+          suggestions={allGoalNames}
+          notFound='No goals found with that name!'
+        />
+      </div>
+      {goalsToDisplay.map((g, i) => (
         <GoalDisplay
           goal={g}
           key={`${g.name}${i}`}
