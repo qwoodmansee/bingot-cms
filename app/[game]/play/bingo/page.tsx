@@ -1,17 +1,16 @@
+import React from 'react';
 import { BingoAssistant } from '../../../../components/bingo-teacher-components/bingo-assistant';
-import { searchGoalsByNames } from '../../../../data-access-layer/factories/goal-factory';
+import { getAllGoals } from '../../../../data-access-layer/factories/goal-factory';
 import { GoalMapper } from '../../../../data-access-layer/mappers/goal-mapper';
 
 export default async function Page() {
-  const goals = await searchGoalsByNames(
-    [
-      '7 Songs',
-      'All 5 Skulltulas in Sprit Temple',
-      'Defeat a Skull Kid',
-      'Keaton Mask',
-      'Clear 10 Silver Rupee Rooms',
-    ],
-    process.env.CMS
+  const goals = await getAllGoals(process.env.CMS);
+
+  return (
+    <div>
+      <div>
+        <BingoAssistant goals={goals.map((g) => GoalMapper.toJSON(g))} />
+      </div>
+    </div>
   );
-  return <BingoAssistant goals={goals.map((g) => GoalMapper.toJSON(g))} />;
 }
