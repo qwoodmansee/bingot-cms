@@ -6,6 +6,7 @@ import { GoalDto } from '../../data-access-layer/mappers/goal-mapper';
 import { TrickDto } from '../../data-access-layer/mappers/trick-mapper';
 import Autocomplete from '../tailwind-components-kimia-ui/autocomplete/autocomplete';
 import Collapse from '../tailwind-components-kimia-ui/collapse/collapse';
+import { getGoalsFromUrl } from '../utils/get_goals_from_bingo_popout';
 import { CheckboxButton } from './checkbox-button';
 import YoutubeDisplayer from './youtube-displayer';
 
@@ -26,9 +27,14 @@ const TrickDisplay = ({ trick }: TrickDisplayProps) => {
 interface GoalDisplayProps {
   goal: GoalDto;
   showFundamentals: boolean;
+  onXPressed: (goalName: string) => void;
 }
 
-const GoalDisplay = ({ goal, showFundamentals }: GoalDisplayProps) => {
+const GoalDisplay = ({
+  goal,
+  showFundamentals,
+  onXPressed,
+}: GoalDisplayProps) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const toggle = () => {
@@ -39,12 +45,20 @@ const GoalDisplay = ({ goal, showFundamentals }: GoalDisplayProps) => {
     <div>
       <div className='flex items-center justify-between py-4 lg:py-8'>
         <h3 className='text-2xl lg:text-3xl font-bold'>{goal.name}</h3>
-        <button
-          className='text-lg lg:text-xl font-bold bg-transparent text-pink-500 border-2 border-pink-500 py-2 px-4 rounded-full shadow hover:bg-pink-500 hover:text-white transition-colors duration-300 focus:outline-none'
-          onClick={toggle}
-        >
-          {isOpen ? 'Hide' : 'Show'}
-        </button>
+        <div className='flex justify-end'>
+          <button
+            className='text-lg lg:text-xl font-bold bg-transparent text-pink-500 border-2 border-pink-500 py-2 px-4 rounded-full shadow hover:bg-pink-500 hover:text-white transition-colors duration-300 focus:outline-none'
+            onClick={toggle}
+          >
+            {isOpen ? 'Hide' : 'Show'}
+          </button>
+          <button
+            onClick={() => onXPressed(goal.name)}
+            className='ml-4 text-lg lg:text-xl font-bold bg-transparent text-pink-500 border-2 border-pink-500 py-2 px-4 rounded-full shadow hover:bg-pink-500 hover:text-white transition-colors duration-300 focus:outline-none'
+          >
+            X
+          </button>
+        </div>
       </div>
 
       <Collapse isOpen={isOpen}>
@@ -73,27 +87,12 @@ interface BingoAssistantProps {
   goals: Array<GoalDto>;
 }
 
-export const getGoalsFromUrl = (url: string, goals: Array<GoalDto>) => {
-  const splitURL = url.split('%3D');
-  if (splitURL.length === 1) return [];
-  const encodedGoalsString = splitURL[1];
-  const encodedGoalsList = encodedGoalsString.split('%3B%3B%3B');
-  const checkSet = new Set();
-  encodedGoalsList.forEach((encodedGoalString) => {
-    let decodedGoalName = decodeURI(encodedGoalString);
-    // special cases that decodeURI misses
-    decodedGoalName = decodedGoalName.replace('%26', '&');
-    checkSet.add(decodeURI(decodedGoalName));
-  });
-
-  const foundGoals = goals.filter((goal) => checkSet.has(goal.name));
-  return foundGoals;
-};
-
 export const BingoAssistant = ({ goals }: BingoAssistantProps) => {
   const [showFundamentals, setShowFundamentals] = useState(false);
   const [searchBarValue, setSearchBarValue] = React.useState('');
-  const [bingoUrl, setBingoUrl] = React.useState('');
+  const [bingoUrl, setBingoUrl] = React.useState(
+    'https://ootbingo.github.io/bingo/bingo-popout.html#ROW4%3DObtain%20all%205%20Small%20Keys%20in%20Forest%20Temple%3B%3B%3B30%20Different%20Skulltulas%3B%3B%3BMap%20%26%20Compass%20in%20Bottom%20of%20the%20Well%3B%3B%3BMap%20%26%20Compass%20in%20Spirit%20Temple%3B%3B%3BWater%20Medallion'
+  );
   const allGoalNames = goals.map((g) => g.name);
   const [goalsToDisplay, setGoalsToDisplay] = useState<Array<GoalDto>>([]);
 
@@ -117,6 +116,11 @@ export const BingoAssistant = ({ goals }: BingoAssistantProps) => {
     } else {
       setSearchBarValue(goalName);
     }
+  };
+
+  const handleRemoveGoal = (goalName: string) => {
+    const newGoalsToDisplay = goalsToDisplay.filter((g) => g.name !== goalName);
+    setGoalsToDisplay(newGoalsToDisplay);
   };
 
   return (
@@ -147,19 +151,21 @@ export const BingoAssistant = ({ goals }: BingoAssistantProps) => {
           />
           <button
             type='button'
-            className='px-4 py-2 border border-transparent text-sm font-medium rounded-r-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 focus:ring-offset-gray-100'
+            className='px-4 py-2 rounded-r-md text-white bg-gradient-to-r from-pink-500 to-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 focus:ring-offset-gray-100 transition-all duration-300 ease-in-out transform '
             onClick={handleParseClicked}
           >
-            Parse Bingo URL
+            Parse Bingo Popout URL
           </button>
         </div>
       </div>
       {goalsToDisplay.map((g, i) => (
-        <GoalDisplay
-          goal={g}
-          key={`${g.name}${i}`}
-          showFundamentals={showFundamentals}
-        />
+        <div key={`${g.name}${i}`} className='relative'>
+          <GoalDisplay
+            goal={g}
+            showFundamentals={showFundamentals}
+            onXPressed={handleRemoveGoal}
+          />
+        </div>
       ))}
     </div>
   );
