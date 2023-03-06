@@ -57,7 +57,7 @@ const _legacy_trick_to_trick = (legacyTrick: LegacyTrick) => {
     legacyTrick.trickUrl &&
     inconsistentMvpGetVideoIdFromUrl(legacyTrick.trickUrl);
   if (!videoId) {
-    videoId = 'gtlcv8K2z1Q'; // just some video
+    videoId = ''; // just some video
   }
 
   let startTime =
@@ -75,6 +75,7 @@ const _legacy_trick_to_trick = (legacyTrick: LegacyTrick) => {
       startTimeInSeconds: startTime,
     }),
     description: legacyTrick.notes,
+    isFundamental: legacyTrick.isFundamental,
     difficulty: legacyTrick.isFundamental ? 1 : 2,
   });
 
@@ -1594,7 +1595,7 @@ const _legacy_tricks = () => {
     },
     {
       id: 'A849D697',
-      trickName: 'RBA (perhaps a guide to reading the imgur link?)',
+      trickName: 'RBA',
       trickUrl: null,
       isFundamental: true,
       usuallyRequired: true,

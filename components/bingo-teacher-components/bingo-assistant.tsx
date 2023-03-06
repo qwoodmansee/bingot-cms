@@ -50,18 +50,24 @@ export const BingoAssistant = ({ goals }: BingoAssistantProps) => {
   };
 
   return (
-    <div>
-      <GoalSearchAutocomplete
-        searchBarValue={searchBarValue}
-        handleSearchValueChanged={handleSearchValueChanged}
-        allGoalNames={allGoalNames}
-      />
+    <div className='max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8'>
+      <div className='flex flex-wrap justify-between items-center'>
+        <div className='w-full sm:w-auto mb-4 sm:mb-0'>
+          <GoalSearchAutocomplete
+            searchBarValue={searchBarValue}
+            handleSearchValueChanged={handleSearchValueChanged}
+            allGoalNames={allGoalNames}
+          />
+        </div>
 
-      <PopoutUrlParseInput
-        bingoUrl={bingoUrl}
-        setBingoUrl={setBingoUrl}
-        handleParseClicked={handleParseClicked}
-      />
+        <div className='w-full sm:w-auto'>
+          <PopoutUrlParseInput
+            bingoUrl={bingoUrl}
+            setBingoUrl={setBingoUrl}
+            handleParseClicked={handleParseClicked}
+          />
+        </div>
+      </div>
 
       <CheckboxButton
         initialViewState={showFundamentals}
@@ -70,22 +76,26 @@ export const BingoAssistant = ({ goals }: BingoAssistantProps) => {
         {showFundamentals ? 'Hide Fundmentals' : 'Show Fundamentals'}
       </CheckboxButton>
 
-      <button
-        className='text-lg lg:text-xl font-bold bg-transparent text-white-500 border-2 border-white-500 py-2 px-4 rounded-full shadow hover:bg-pink-500 hover:text-white transition-colors duration-300 focus:outline-none'
-        onClick={() => setGoalsToDisplay([])}
-      >
-        Remove All Goals
-      </button>
+      {goalsToDisplay.length > 0 && (
+        <button
+          className='text-lg lg:text-xl font-bold bg-transparent text-white-500 border-2 border-white-500 py-2 px-4 rounded-full shadow hover:bg-pink-500 hover:text-white transition-colors duration-300 focus:outline-none mt-4'
+          onClick={() => setGoalsToDisplay([])}
+        >
+          Remove All Goals
+        </button>
+      )}
 
-      {goalsToDisplay.map((g, i) => (
-        <div key={`${g.name}${i}`} className='relative'>
-          <GoalDisplay
-            goal={g}
-            showFundamentals={showFundamentals}
-            onXPressed={handleRemoveGoal}
-          />
-        </div>
-      ))}
+      <div className='grid gap-6 mt-4'>
+        {goalsToDisplay.map((g, i) => (
+          <div key={`${g.name}${i}`} className='relative'>
+            <GoalDisplay
+              goal={g}
+              showFundamentals={showFundamentals}
+              onXPressed={handleRemoveGoal}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

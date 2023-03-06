@@ -23,18 +23,18 @@ export const GoalDisplay = ({
 
   return (
     <div>
-      <div className='flex items-center justify-between py-4 lg:py-8'>
-        <h3 className='text-2xl lg:text-3xl font-bold'>{goal.name}</h3>
+      <div className='flex items-center justify-between py-2 lg:py-4'>
+        <h3 className='text-xl lg:text-1.5xl font-bold'>{goal.name}</h3>
         <div className='flex justify-end'>
           <button
-            className='text-lg lg:text-xl font-bold bg-transparent text-pink-500 border-2 border-pink-500 py-2 px-4 rounded-full shadow hover:bg-pink-500 hover:text-white transition-colors duration-300 focus:outline-none'
+            className='text-md lg:text-l font-bold bg-transparent text-pink-500 border-2 border-pink-500 py-1 px-2 rounded-full shadow hover:bg-pink-500 hover:text-white transition-colors duration-300 focus:outline-none'
             onClick={toggle}
           >
             {isOpen ? 'Hide' : 'Show'}
           </button>
           <button
             onClick={() => onXPressed(goal.name)}
-            className='ml-4 text-lg lg:text-xl font-bold bg-transparent text-pink-500 border-2 border-pink-500 py-2 px-4 rounded-full shadow hover:bg-pink-500 hover:text-white transition-colors duration-300 focus:outline-none'
+            className='ml-2 text-md lg:text-l font-bold bg-transparent text-pink-500 border-2 border-pink-500 py-1 px-2 rounded-full shadow hover:bg-pink-500 hover:text-white transition-colors duration-300 focus:outline-none'
           >
             X
           </button>
@@ -51,7 +51,7 @@ export const GoalDisplay = ({
             return (
               <div
                 key={`${goal.name}${t.name}`}
-                className='w-full sm:w-1/2 md:w-1/2 lg:w-1/3 p-4 lg:p-2'
+                className='w-full sm:w-1/2 md:w-1/2 lg:w-1/4 p-2 lg:p-2'
               >
                 <TrickDisplay trick={t} />
               </div>

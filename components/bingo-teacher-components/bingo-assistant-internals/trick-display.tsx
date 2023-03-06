@@ -9,9 +9,12 @@ interface TrickDisplayProps {
 export const TrickDisplay = ({ trick }: TrickDisplayProps) => {
   const bgColor = trick.isFundamental ? 'bg-secondary text-white' : 'bg-white';
   return (
-    <div className={`${bgColor} shadow-lg rounded-lg p-4 font-bold`}>
-      <h4>{trick.name}</h4>
-      <YoutubeDisplayer title={trick.name} youtubeVideo={trick.video} />
+    <div className={`${bgColor} shadow-lg rounded-lg p-2`}>
+      <h3 className='font-bold text-l mb-1'>{trick.name}</h3>
+      {trick.video.videoId && (
+        <YoutubeDisplayer title={trick.name} youtubeVideo={trick.video} />
+      )}
+      <span>{trick.description}</span>
     </div>
   );
 };
