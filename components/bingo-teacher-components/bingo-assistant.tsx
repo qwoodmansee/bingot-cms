@@ -3,6 +3,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { GoalDto } from '../../data-access-layer/mappers/goal-mapper';
+import Button from '../tailwind-components-kimia-ui/button/button';
 import { getGoalsFromUrl } from '../utils/get_goals_from_bingo_popout';
 import { GoalDisplay } from './bingo-assistant-internals/goal-display';
 import { GoalSearchAutocomplete } from './bingo-assistant-internals/goal-search-autocomplete';
@@ -51,50 +52,55 @@ export const BingoAssistant = ({ goals }: BingoAssistantProps) => {
 
   return (
     <div className='max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8'>
-      <div className='flex flex-wrap justify-between items-center'>
-        <div className='w-full sm:w-auto mb-4 sm:mb-0'>
-          <GoalSearchAutocomplete
-            searchBarValue={searchBarValue}
-            handleSearchValueChanged={handleSearchValueChanged}
-            allGoalNames={allGoalNames}
-          />
+      <div className='flex flex-col lg:flex-row'>
+        <div className='w-full lg:w-4/7 px-1'>
+          {goalsToDisplay.length > 0 ? (
+            <div className='flex flex-wrap justify-between items-center mt-4'>
+              <CheckboxButton
+                initialViewState={showFundamentals}
+                onToggle={() => setShowFundamentals(!showFundamentals)}
+              >
+                {showFundamentals ? 'Hide Fundmentals' : 'Show Fundamentals'}
+              </CheckboxButton>
+              <Button
+                className='text-m lg:text-l font-bold bg-transparent text-white-500 border-2 border-white-500 py-1 px-2 shadow hover:bg-pink-500 hover:text-white transition-colors duration-300 focus:outline-none ml-4'
+                onClick={() => setGoalsToDisplay([])}
+              >
+                Remove All Goals
+              </Button>
+            </div>
+          ) : (
+            <h2>Search for goals or paste in a popout card url!</h2>
+          )}
+
+          <div className='grid gap-6 mt-4'>
+            {goalsToDisplay.map((g, i) => (
+              <div key={`${g.name}${i}`} className='relative'>
+                <GoalDisplay
+                  goal={g}
+                  showFundamentals={showFundamentals}
+                  onXPressed={handleRemoveGoal}
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className='w-full sm:w-auto'>
+        <div className='w-full lg:w-1/4 lg:pl-3 mt-4 lg:mt-0'>
+          <div className='mb-4'>
+            <GoalSearchAutocomplete
+              searchBarValue={searchBarValue}
+              handleSearchValueChanged={handleSearchValueChanged}
+              allGoalNames={allGoalNames}
+            />
+          </div>
+
           <PopoutUrlParseInput
             bingoUrl={bingoUrl}
             setBingoUrl={setBingoUrl}
             handleParseClicked={handleParseClicked}
           />
         </div>
-      </div>
-
-      <CheckboxButton
-        initialViewState={showFundamentals}
-        onToggle={() => setShowFundamentals(!showFundamentals)}
-      >
-        {showFundamentals ? 'Hide Fundmentals' : 'Show Fundamentals'}
-      </CheckboxButton>
-
-      {goalsToDisplay.length > 0 && (
-        <button
-          className='text-lg lg:text-xl font-bold bg-transparent text-white-500 border-2 border-white-500 py-2 px-4 rounded-full shadow hover:bg-pink-500 hover:text-white transition-colors duration-300 focus:outline-none mt-4'
-          onClick={() => setGoalsToDisplay([])}
-        >
-          Remove All Goals
-        </button>
-      )}
-
-      <div className='grid gap-6 mt-4'>
-        {goalsToDisplay.map((g, i) => (
-          <div key={`${g.name}${i}`} className='relative'>
-            <GoalDisplay
-              goal={g}
-              showFundamentals={showFundamentals}
-              onXPressed={handleRemoveGoal}
-            />
-          </div>
-        ))}
       </div>
     </div>
   );
