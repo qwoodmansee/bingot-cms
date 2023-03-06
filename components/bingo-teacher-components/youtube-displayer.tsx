@@ -13,9 +13,9 @@ export default function YoutubeDisplayer({
   youtubeVideo,
 }: YoutubeDisplayerProps) {
   return (
-    <div className='aspect-w-16 aspect-h-9'>
+    <div className='aspect-w-16'>
       <LiteYouTubeEmbed
-        iframeClass='w-full h-full'
+        iframeClass='w-full'
         playerClass='hidden'
         title={title}
         poster='hqdefault'
