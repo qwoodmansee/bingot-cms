@@ -31,8 +31,7 @@ export const CheckboxButton = ({
       />
       <label
         htmlFor='checkbox-button'
-        className='select-none cursor-pointer rounded-lg border-2 border-gray-200
-   py-3 px-6 font-bold text-gray-200 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200 '
+        className='select none text-m lg:text-l font-bold bg-transparent text-white-500 border-2 border-white-500 py-1 px-2 shadow hover:bg-pink-500 hover:text-white transition-colors duration-300 focus:outline-none ml-4'
       >
         {children}
       </label>
