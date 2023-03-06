@@ -24,7 +24,9 @@ export const GoalDisplay = ({
   return (
     <div>
       <div className='flex items-center justify-between py-2 lg:py-4'>
-        <h3 className='text-xl lg:text-1.5xl font-bold'>{goal.name}</h3>
+        <h3 className='text-xl lg:text-1.5xl font-bold text-pink-500'>
+          {goal.name}
+        </h3>
         <div className='flex justify-end'>
           <button
             className='text-md lg:text-l font-bold bg-transparent text-pink-500 border-2 border-pink-500 py-1 px-2 rounded-full shadow hover:bg-pink-500 hover:text-white transition-colors duration-300 focus:outline-none'
