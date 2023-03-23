@@ -6,12 +6,12 @@ export class MockCategoryRepository implements ICategoryRepository {
   async getAllCategories(): Promise<Category[]> {
     const routeRepository = new MockRouteRepository();
     const oldSchoolAnyPercentRoute = await routeRepository.getRouteByName(
-      'Old School Any%'
+      'Old School Any Percent'
     );
     const defeatGanonNoSRM = Category.create({
       name: 'Defeat Ganon No SRM',
       description: 'Complete the game as fast as possible by defeating ganon',
-      notes: 'Similar to Any% Before GIM & SRM',
+      notes: 'Similar to Any Percent Before GIM & SRM',
       routes: [oldSchoolAnyPercentRoute],
     });
 

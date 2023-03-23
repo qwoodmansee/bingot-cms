@@ -1,7 +1,7 @@
 import { Category } from '../../domain-import-only/Category';
 import { MockCategoryRepository } from '../mock/repositories/mock-category-repository';
 
-export const searchCategoriesByName = async (
+export const getCategoryByName = async (
   categoryName: string,
   cms: string
 ): Promise<Category | null> => {

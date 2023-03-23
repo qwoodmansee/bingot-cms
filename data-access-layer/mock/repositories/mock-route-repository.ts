@@ -18,7 +18,7 @@ const _old_any_percent_tricks = async (tricks) => {
 
 const _old_school_any_percent_route = async (tricks) => {
   return Route.create({
-    name: 'Old School Any%',
+    name: 'Old School Any Percent',
     description: 'This is the old route back when times were simpler',
     notes: 'Some notes about the route',
     tricks: await _old_any_percent_tricks(tricks),
@@ -36,7 +36,7 @@ export class MockRouteRepository implements IRouteRepository {
   async getRouteByName(name: string): Promise<Route | null> {
     const trickRepository = new MockTrickRepository();
     const allTricks = await trickRepository.getAllTricks();
-    if (name === 'Old School Any%') {
+    if (name === 'Old School Any Percent') {
       return await _old_school_any_percent_route(allTricks);
     } else {
       return Route.create({

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getAllCategories } from '../../../data-access-layer/factories/category-factory';
+import { getCategoryByName } from '../../../../../data-access-layer/factories/category-factory';
 import { getAllTricks } from '../../../data-access-layer/factories/trick-factory';
 const cms = process.env.CMS;
 
@@ -8,14 +8,13 @@ export async function generateStaticParams() {
   return [{ game: 'oot' }];
 }
 
-export default async function Page({ params: { game } }) {
-  const tricks = await getAllTricks(cms);
-  const categories = await getAllCategories(cms);
+export default async function Page({ params: { game, category } }) {
+  const categoryDomain = await getCategoryByName(category, cms);
   return (
     <>
-      <h3>Categories</h3>
+      <h3>Routes</h3>
       <ul className='flex flex-wrap justify-center'>
-        {categories.map((c) => {
+        {category.routes.map((c) => {
           return (
             <li
               key={c.name}

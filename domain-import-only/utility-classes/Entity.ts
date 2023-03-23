@@ -1,3 +1,5 @@
+import crypto from 'crypto';
+
 const isEntity = (v: unknown): v is Entity<unknown> => {
   return v instanceof Entity;
 };
