@@ -11,7 +11,7 @@ export const TrickDisplay = ({ trick }: TrickDisplayProps) => {
   return (
     <div className={`${bgColor} shadow-lg rounded-lg p-2`}>
       <h3 className='font-bold text-sm mb-1'>{trick.name}</h3>
-      {trick.video.videoId && (
+      {trick.video && trick.video.videoId && (
         <YoutubeDisplayer title={trick.name} youtubeVideo={trick.video} />
       )}
       <span className='text-sm'>{trick.description}</span>
